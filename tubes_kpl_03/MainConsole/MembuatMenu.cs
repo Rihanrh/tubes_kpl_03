@@ -12,7 +12,7 @@ namespace MainConsole
 {
     public class Menu
     {
-        private List<MenuMakanan<string>> DaftarMenu = new List<MenuMakanan<string>>();
+        public List<MenuMakanan<string>> DaftarMenu = new List<MenuMakanan<string>>();
 
         public MenuMakanan<string> MembuatMenu()
         {
