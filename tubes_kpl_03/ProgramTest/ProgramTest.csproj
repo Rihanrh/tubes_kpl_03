@@ -7,11 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-<<<<<<< Updated upstream
-=======
-  <ItemGroup>
-    <ProjectReference Include="..\Printing\Printing.csproj" />
-  </ItemGroup>
-
->>>>>>> Stashed changes
 </Project>
