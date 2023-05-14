@@ -12,147 +12,150 @@ class program
                 case "awal":
                     Console.WriteLine("Selamat datang, Silahkan pilih menu makanan anda");
                     Console.WriteLine("1. Makanan");
-                    Console.WriteLine("2. Minuman");                    
-                    string input = Console.ReadLine();
-                    Console.WriteLine(" ");
+                    Console.WriteLine("2. Minuman");
+                    Console.WriteLine();
+                    int select = Convert.ToInt32(Console.ReadLine());
+                    switch (select)
+                    {
+                        case 1:
+                            Console.WriteLine("Silahkan pilih makanan anda");
+                            Console.WriteLine("1. Nasi Goreng Ayam");
+                            Console.WriteLine("2. Katsu");
+                            Console.WriteLine("3. Mie Goreng");
+                            Console.WriteLine("4. Ayam Geprek");
+                            Console.WriteLine("");
+                            int selectMakanan = Convert.ToInt32(Console.ReadLine());
 
-                    if (input == "1")
-                    {
-                        state = "makanan";
-                    }
-                    else if (input == "2")
-                    {
-                        state = "minuman";
-                    }
-                    break;
+                            switch (selectMakanan)
+                            {
+                                case 1:
+                                    Console.WriteLine("Anda memesan Nasi Goreng Ayam");
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Anda memesan Katsu");
+                                    break;
+                                case 3:
+                                    Console.WriteLine("Anda memesan Mie Goreng");
+                                    break;
+                                case 4:
+                                    Console.WriteLine("Anda memesan Ayam Goreng");
+                                    break;
+                                default:
+                                    Console.WriteLine("Menu tidak tersedia");
+                                    break;
+                            }
+                            Console.WriteLine("Apakah anda ingin memesan minuman?");
+                            Console.WriteLine("1. Iya");
+                            Console.WriteLine("2 .Tidak");
+                            Console.WriteLine("");
+                            int inputPilihan1 = Convert.ToInt32(Console.ReadLine());
 
-                case "makanan":
-                    Console.WriteLine("Silahkan pilih makanan anda");
-                    Console.WriteLine("1. Nasi Goreng Ayam");
-                    Console.WriteLine("2. Katsu");
-                    Console.WriteLine("3. Mie Goreng");
-                    Console.WriteLine("4. Ayam Geprek");                    
-                    input = Console.ReadLine();
-                    Console.WriteLine(" ");
+                            switch (inputPilihan1)
+                            {
+                                case 1:
+                                    Console.WriteLine("Anda ingin memesan minuman apa?");
+                                    Console.WriteLine("1. Air Putih");
+                                    Console.WriteLine("2. Es Teh Manis");
+                                    Console.WriteLine("3. Lemon Tea");
+                                    Console.WriteLine("");
+                                    int inputMinuman1 = Convert.ToInt32(Console.ReadLine());
 
-                    if (input == "1")
-                    {
-                        Console.WriteLine("Anda memesan Nasi Goreng Ayam");
-                    }
-                    else if (input == "2")
-                    {
-                        Console.WriteLine("Anda memesan Katsu");
-                    }
-                    else if (input == "3")
-                    {
-                        Console.WriteLine("Anda memesan Mie Goreng");
-                    }
-                    else if (input == "4")
-                    {
-                        Console.WriteLine("Anda memesan Ayam Goreng");
-                    }
-                    Console.WriteLine("Apakah anda ingin memesan minuman?");
-                    Console.WriteLine("1. Iya");
-                    Console.WriteLine("2 .Tidak");                    
-                    input = Console.ReadLine();
-                    Console.WriteLine("");
+                                    switch (inputMinuman1)
+                                    {
+                                        case 1:
+                                            Console.WriteLine("Anda memesan air putih");
+                                            break;
+                                        case 2:
+                                            Console.WriteLine("Anda memesan Es Teh Manis");
+                                            break;
+                                        case 3:
+                                            Console.WriteLine("Anda memesan Lemon Tea");
+                                            break;
+                                        default:
+                                            Console.WriteLine("Menu tidak tersedia");
+                                            break;
+                                    }
+                                    break;
 
-                    if (input == "1")
-                    {
-                        Console.WriteLine("Anda ingin memesan minuman apa?");
-                        Console.WriteLine("1. Air Putih");
-                        Console.WriteLine("2. Es Teh Manis");
-                        Console.WriteLine("3. Lemon Tea");
-                        Console.WriteLine("");
-                        input = Console.ReadLine();
+                                case 2:
+                                    Console.WriteLine("Pesanan anda akan segera diantar");
+                                    state = "selesai";
+                                    break;
 
-                        if (input == "1")
-                        {
-                            Console.WriteLine("Anda memesan air putih");
-                        }
-                        else if (input == "2")
-                        {
-                            Console.WriteLine("Anda memesan Es Teh Manis");
-                        }
-                        else if (input == "3")
-                        {
-                            Console.WriteLine("Anda memesan Lemon Tea");
-                        }
-                    }
-                    else if (input == "2") { }
-                    {
-                        Console.WriteLine("Pesanan anda akan segera diantar");
-                        state = "selesai";
-                    }
-                    break;
+                            }
+                            break;
+                        case 2:
+                            Console.WriteLine("Silahkan pilih minuman anda");
+                            Console.WriteLine("Anda ingin memesan minuman apa?");
+                            Console.WriteLine("1. Air Mineral");
+                            Console.WriteLine("2. Es Teh Manis");
+                            Console.WriteLine("3. Lemon Tea");
+                            Console.WriteLine("");
+                            int inputMinuman2 = Convert.ToInt32(Console.ReadLine());
+                            switch (inputMinuman2)
+                            {
+                                case 1:
+                                    Console.WriteLine("Anda memesan Air Mineral");
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Anda memesan Es Teh Manis");
+                                    break;
+                                case 3:
+                                    Console.WriteLine("Anda memesan Lemon Tea");
+                                    break;
+                                default:
+                                    Console.WriteLine("Menu tidak tersedia");
+                                    break;
+                            }
+                            Console.WriteLine("Apakah anda ingin memesan makanan?");
+                            Console.WriteLine("1. Iya");
+                            Console.WriteLine("2. Tidak");
+                            Console.WriteLine("");
+                            int inputPilihan2 = Convert.ToInt32(Console.ReadLine());
+                            switch (inputPilihan2)
+                            {
+                                case 1:
+                                    Console.WriteLine("Anda ingin memesan apa?");
+                                    Console.WriteLine("1. Nasi Goreng Ayam");
+                                    Console.WriteLine("2. Katsu");
+                                    Console.WriteLine("3. Mie Goreng");
+                                    Console.WriteLine("4. Ayam Geprek");
+                                    Console.WriteLine("");
+                                    int inputMakanan2 = Convert.ToInt32(Console.ReadLine());
+                                    switch (inputMakanan2)
+                                    {
+                                        case 1:
+                                            Console.WriteLine("Anda memesan Nasi Goreng Ayam");
+                                            Console.WriteLine("Pesanan anda akan segera diantar");
+                                            state = "selesai";
+                                            break;
+                                        case 2:
+                                            Console.WriteLine("Anda memesan Katsu");
+                                            Console.WriteLine("Pesanan anda akan segera diantar");
+                                            state = "selesai";
+                                            break;
+                                        case 3:
+                                            Console.WriteLine("Anda memesan Mie Goreng");
+                                            Console.WriteLine("Pesanan anda akan segera diantar");
+                                            state = "selesai";
+                                            break;
+                                        case 4:
+                                            Console.WriteLine("Anda memesan Ayam Goreng");
+                                            Console.WriteLine("Pesanan anda akan segera diantar");
+                                            state = "selesai";
+                                            break;
+                                        default:
+                                            Console.WriteLine("Menu tidak tersedia");
+                                            break;
+                                    }
+                                    break;
+                                case 2:
+                                    Console.WriteLine("Pesanan anda akan segera diantar");
+                                    state = "selesai";
+                                    break;
+                            }
+                            break;
 
-                case "minuman":
-                    Console.WriteLine("Silahkan pilih minuman anda");
-                    Console.WriteLine("Anda ingin memesan minuman apa?");
-                    Console.WriteLine("1. Air Mineral");
-                    Console.WriteLine("2. Es Teh Manis");
-                    Console.WriteLine("3. Lemon Tea");                    
-                    input = Console.ReadLine();
-                    Console.WriteLine(" ");
-
-                    if (input == "1")
-                    {
-                        Console.WriteLine("Anda memesan Air Mineral");
-                    }
-                    else if (input == "2")
-                    {
-                        Console.WriteLine("Anda memesan Es Teh Manis");
-                    }
-                    else if (input == "3")
-                    {
-                        Console.WriteLine("Anda memesan Lemon Tea");
-                    }
-
-                    Console.WriteLine("Apakah anda ingin memesan makanan?");
-                    Console.WriteLine("1. Iya");
-                    Console.WriteLine("2. Tidak");                    
-                    input = Console.ReadLine();
-                    Console.WriteLine(" ");
-
-                    if (input == "1")
-                    {
-                        Console.WriteLine("Anda ingin memesan apa?");
-                        Console.WriteLine("1. Nasi Goreng Ayam");
-                        Console.WriteLine("2. Katsu");
-                        Console.WriteLine("3. Mie Goreng");
-                        Console.WriteLine("4. Ayam Geprek");
-                        input = Console.ReadLine();
-                        Console.WriteLine(" ");
-
-                        if (input == "1")
-                        {
-                            Console.WriteLine("Anda memesan Nasi Goreng Ayam");
-                            Console.WriteLine("Pesanan anda akan segera diantar");
-                            state = "selesai";
-                        }
-                        else if (input == "2")
-                        {
-                            Console.WriteLine("Anda memesan Katsu");
-                            Console.WriteLine("Pesanan anda akan segera diantar");
-                            state = "selesai";
-                        }
-                        else if (input == "3")
-                        {
-                            Console.WriteLine("Anda memesan Mie Goreng");
-                            Console.WriteLine("Pesanan anda akan segera diantar");
-                            state = "selesai";
-                        }
-                        else if (input == "4")
-                        {
-                            Console.WriteLine("Anda memesan Ayam Goreng");
-                            Console.WriteLine("Pesanan anda akan segera diantar");
-                            state = "selesai";
-                        }
-                    }
-                    else if (input == "2")
-                    {
-                        Console.WriteLine("Pesanan anda akan segera diantar");
-                        state = "selesai";
                     }
                     break;
             }

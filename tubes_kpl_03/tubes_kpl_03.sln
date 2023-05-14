@@ -5,6 +5,8 @@ VisualStudioVersion = 17.5.33627.172
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MemilihMenuMakanan", "MemilihMenuMakanan\MemilihMenuMakanan.csproj", "{A21D3EF6-1030-4B1E-9273-0C4225AF353D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckoutMenuMakanan", "CheckoutMenuMakanan\CheckoutMenuMakanan.csproj", "{1D4652D0-9AC9-4EA8-B0E2-EC9F127FCF0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{A21D3EF6-1030-4B1E-9273-0C4225AF353D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A21D3EF6-1030-4B1E-9273-0C4225AF353D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A21D3EF6-1030-4B1E-9273-0C4225AF353D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D4652D0-9AC9-4EA8-B0E2-EC9F127FCF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1D4652D0-9AC9-4EA8-B0E2-EC9F127FCF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1D4652D0-9AC9-4EA8-B0E2-EC9F127FCF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1D4652D0-9AC9-4EA8-B0E2-EC9F127FCF0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
