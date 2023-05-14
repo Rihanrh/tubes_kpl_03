@@ -52,26 +52,42 @@ namespace CheckoutMenuMakanan
             string inputMinuman = Console.ReadLine();
 
             //Memproses input pengguna
-            int total = hitungHargaTotal(makanan, inputMakanan) + hitungHargaTotal(minuman, inputMinuman);
+            try
+            {
+                //Memproses input pengguna
+                int total = hitungHargaTotal(makanan, inputMakanan) + hitungHargaTotal(minuman, inputMinuman);
 
-            // Menampilkan harga
-            Console.WriteLine($"Total harga: Rp{total}");
-            Console.ReadLine();
-
+                // Menampilkan harga
+                Console.WriteLine($"Total harga: Rp{total}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Terjadi kesalahan saat menghitung total harga:");
+                Console.WriteLine(ex.Message);
+            }
+            finally
+            {
+                Console.ReadLine();
+            }
         }
 
         public static int hitungHargaTotal(Dictionary<string, int> menu, string input)
         {
             int total = 0;
-            string[] pilihan = input.Split(',');
-            foreach (string s in pilihan)
+            try
             {
-                int index = int.Parse(s.Trim()) - 1;
-                total += menu.Values.ElementAt(index);
+                string[] pilihan = input.Split(',');
+                foreach (string s in pilihan)
+                {
+                    int index = int.Parse(s.Trim()) - 1;
+                    total += menu.Values.ElementAt(index);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception($"Terjadi kesalahan saat menghitung harga: {ex.Message}");
             }
             return total;
         }
-
-
     }
 }
