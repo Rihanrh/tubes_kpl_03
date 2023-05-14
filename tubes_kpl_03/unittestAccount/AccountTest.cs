@@ -1,5 +1,6 @@
 using AccountManager;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Newtonsoft.Json.Linq;
 
 namespace unittestAccount
 {
@@ -26,6 +27,12 @@ namespace unittestAccount
             }
             am.activeTrigger(AccountMachine.Trigger.Submit);
             Assert.AreEqual(AccountMachine.State.Start, am.currentState);
+
+            // Membaca isi file JSON dan memastikan username-nya sesuai
+            string json = File.ReadAllText("acc_config.json");
+            JObject obj = JObject.Parse(json);
+            string username = obj["username"].ToString();
+            Assert.AreEqual("rihan", username);
         }
 
         [TestMethod]
