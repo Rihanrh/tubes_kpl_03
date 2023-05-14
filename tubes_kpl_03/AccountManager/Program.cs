@@ -13,25 +13,49 @@ namespace AccountManager
 
             Console.WriteLine("Selamat datang.");
 
+            int selection = 0;
             while (am.currentState != AccountMachine.State.End)
             {
-                Console.WriteLine("Pilih Menu:");
-                Console.WriteLine("1. Registrasi");
-                Console.WriteLine("2. Login");
-                Console.WriteLine("3. End");
-                int selection = Convert.ToInt32(Console.ReadLine());
-
                 switch (selection)
                 {
+                    case 0:
+                        Console.WriteLine("Pilih Menu:");
+                        Console.WriteLine("1. Registrasi");
+                        Console.WriteLine("2. Login");
+                        Console.WriteLine("3. End");
+
+                        try
+                        {
+                            selection = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("");
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Input invalid. Tolong masukkan inputan angka.\n");
+                            continue;
+                        }
+                        break;
+
                     case 1:
                         am.activeTrigger(AccountMachine.Trigger.RegisButton);
-                        Console.WriteLine("\nAnda berada di halaman Registrasi");
+                        Console.WriteLine("Anda berada di halaman Registrasi");
                         Console.WriteLine("Pilih tipe akun:");
                         Console.WriteLine("1. Pembeli");
                         Console.WriteLine("2. Tenant");
                         Console.WriteLine("3. Kasir");
                         Console.WriteLine("4. Cancel");
-                        int regisSelect = Convert.ToInt32(Console.ReadLine());
+                        int regisSelect;
+
+                        try
+                        {
+                            regisSelect = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("");
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Input invalid. Tolong masukkan inputan angka.\n");
+                            continue;
+                        }
 
                         switch (regisSelect)
                         {
@@ -51,7 +75,9 @@ namespace AccountManager
                                 am.activeTrigger(AccountMachine.Trigger.Submit);
                                 break;
                             case 4:
+                                Console.WriteLine("Kembali ke halaman Registrasi/Login.\n");
                                 am.activeTrigger(AccountMachine.Trigger.Cancel);
+                                selection = 0;
                                 break;
                             default:
                                 Console.WriteLine("Pilihan Invalid.");
@@ -61,39 +87,58 @@ namespace AccountManager
 
                     case 2:
                         am.activeTrigger(AccountMachine.Trigger.LoginButton);
-                        Console.WriteLine("\nAnda berada di halaman Login");
+                        Console.WriteLine("Anda berada di halaman Login");
                         Console.WriteLine("Pilih tipe akun:");
                         Console.WriteLine("1. Pembeli");
                         Console.WriteLine("2. Tenant");
                         Console.WriteLine("3. Kasir");
                         Console.WriteLine("4. Cancel");
-                        int loginSelect = Convert.ToInt32(Console.ReadLine());
+                        int loginSelect;
+
+                        try
+                        {
+                            loginSelect = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("");
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Input invalid. Tolong masukkan inputan angka.\n");
+                            continue;
+                        }
 
                         switch (loginSelect)
                         {
                             case 1:
                                 am.activeTrigger(AccountMachine.Trigger.SelectPembeli);
                                 am.Login();
-                                am.activeTrigger(AccountMachine.Trigger.Submit);
-                                am.MainScreen();
+                                if (am.currentState == AccountMachine.State.PembeliScreen)
+                                {
+                                    am.MainScreen();
+                                }
                                 break;
                             case 2:
                                 am.activeTrigger(AccountMachine.Trigger.SelectTenant);
                                 am.Login();
-                                am.activeTrigger(AccountMachine.Trigger.Submit);
-                                am.MainScreen();
+                                if (am.currentState == AccountMachine.State.TenantScreen)
+                                {
+                                    am.MainScreen();
+                                }
                                 break;
                             case 3:
                                 am.activeTrigger(AccountMachine.Trigger.SelectKasir);
                                 am.Login();
-                                am.activeTrigger(AccountMachine.Trigger.Submit);
-                                am.MainScreen();
+                                if (am.currentState == AccountMachine.State.KasirScreen)
+                                {
+                                    am.MainScreen();
+                                }
                                 break;
                             case 4:
+                                Console.WriteLine("Kembali ke halaman Registrasi/Login.\n");
                                 am.activeTrigger(AccountMachine.Trigger.Cancel);
+                                selection = 0;
                                 break;
                             default:
-                                Console.WriteLine("Pilihan Invalid.");
+                                Console.WriteLine("Pilihan Invalid.\n");
                                 break;
                         }
                         break;
@@ -103,7 +148,8 @@ namespace AccountManager
                         break;
 
                     default:
-                        Console.WriteLine("Pilihan Invalid.");
+                        Console.WriteLine("Pilihan Invalid.\n");
+                        selection = 0;
                         break;
                 }
 

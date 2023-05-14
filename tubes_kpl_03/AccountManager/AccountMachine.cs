@@ -41,7 +41,7 @@ namespace AccountManager
             new transition(State.Registration, State.PembeliRegistration, Trigger.SelectPembeli),
             new transition(State.Registration, State.TenantRegistration, Trigger.SelectTenant),
             new transition(State.Registration, State.KasirRegistration, Trigger.SelectKasir),
-            new transition(State.Registration, State.End, Trigger.Cancel),
+            new transition(State.Registration, State.Start, Trigger.Cancel),
 
             new transition(State.PembeliRegistration, State.Start, Trigger.Submit),
             new transition(State.PembeliRegistration, State.Registration, Trigger.Cancel),
@@ -56,7 +56,7 @@ namespace AccountManager
             new transition(State.Login, State.PembeliLogin, Trigger.SelectPembeli),
             new transition(State.Login, State.TenantLogin, Trigger.SelectTenant),
             new transition(State.Login, State.KasirLogin, Trigger.SelectKasir),
-            new transition(State.Login, State.End, Trigger.Cancel),
+            new transition(State.Login, State.Start, Trigger.Cancel),
 
             new transition(State.PembeliLogin, State.PembeliScreen, Trigger.Submit),
             new transition(State.PembeliLogin, State.Login, Trigger.Cancel),
@@ -68,9 +68,9 @@ namespace AccountManager
             new transition(State.KasirLogin, State.Login, Trigger.Cancel),
 
             // Bagian MainScreen
-            new transition(State.PembeliScreen, State.Start, Trigger.Cancel),
-            new transition(State.TenantScreen, State.Start, Trigger.Cancel),
-            new transition(State.KasirScreen, State.Start, Trigger.Cancel)
+            new transition(State.PembeliScreen, State.Login, Trigger.Cancel),
+            new transition(State.TenantScreen, State.Login, Trigger.Cancel),
+            new transition(State.KasirScreen, State.Login, Trigger.Cancel)
         };
 
         public State currentState;
@@ -196,11 +196,14 @@ namespace AccountManager
 
             if (tipe_akun == config.tipe_akun && username == config.username && password == config.password)
             {
-                Console.WriteLine("Login berhasil!");
+                Console.WriteLine("Login berhasil!\n");
+                activeTrigger(Trigger.Submit);
             }
             else
             {
                 Console.WriteLine("Login gagal, username atau password salah");
+                Console.WriteLine("Kembali ke layar Login.\n");
+                activeTrigger(Trigger.Cancel);
             }
         }
 
@@ -227,14 +230,34 @@ namespace AccountManager
                 Console.WriteLine("Selamat datang, kasir " + config.username + "!");
             }
 
-            Console.WriteLine("Menu: ");
-            Console.WriteLine("1. Logout");
-            string menuMain = Console.ReadLine();
+            int menuMain = 0;
 
-            if (menuMain == "1")
+            while (currentState != State.Login)
             {
-                Console.WriteLine("Logout. Kembali ke halaman Registrasi/Login");
-                activeTrigger(Trigger.Cancel);
+                switch (menuMain)
+                {
+                    case 0:
+                        Console.WriteLine("Menu: ");
+                        Console.WriteLine("1. Logout");
+                        try
+                        {
+                            menuMain = Convert.ToInt32(Console.ReadLine());
+                            Console.WriteLine("");
+                        }
+                        catch (FormatException)
+                        {
+                            Console.WriteLine("Input invalid. Tolong masukkan inputan angka.\n");
+                        }
+                        break;
+                    case 1:
+                        Console.WriteLine("Logout. Kembali ke halaman Login");
+                        activeTrigger(Trigger.Cancel);
+                        break;
+                    default:
+                        Console.WriteLine("Input invalid.");
+                        menuMain = 0;
+                        break;
+                }
             }
         }
     }
