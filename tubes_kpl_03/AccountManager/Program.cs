@@ -63,16 +63,19 @@ namespace AccountManager
                                 am.activeTrigger(AccountMachine.Trigger.SelectPembeli);
                                 am.Register();
                                 am.activeTrigger(AccountMachine.Trigger.Submit);
+                                selection = 0;
                                 break;
                             case 2:
                                 am.activeTrigger(AccountMachine.Trigger.SelectTenant);
                                 am.Register();
                                 am.activeTrigger(AccountMachine.Trigger.Submit);
+                                selection = 0;
                                 break;
                             case 3:
                                 am.activeTrigger(AccountMachine.Trigger.SelectKasir);
                                 am.Register();
                                 am.activeTrigger(AccountMachine.Trigger.Submit);
+                                selection = 0;
                                 break;
                             case 4:
                                 Console.WriteLine("Kembali ke halaman Registrasi/Login.\n");
@@ -114,6 +117,10 @@ namespace AccountManager
                                 if (am.currentState == AccountMachine.State.PembeliScreen)
                                 {
                                     am.MainScreen();
+                                    if (am.currentState == AccountMachine.State.Start)
+                                    {
+                                        selection = 0;
+                                    }
                                 }
                                 break;
                             case 2:
@@ -122,6 +129,10 @@ namespace AccountManager
                                 if (am.currentState == AccountMachine.State.TenantScreen)
                                 {
                                     am.MainScreen();
+                                    if (am.currentState == AccountMachine.State.Start)
+                                    {
+                                        selection = 0;
+                                    }
                                 }
                                 break;
                             case 3:
@@ -130,6 +141,10 @@ namespace AccountManager
                                 if (am.currentState == AccountMachine.State.KasirScreen)
                                 {
                                     am.MainScreen();
+                                    if (am.currentState == AccountMachine.State.Start)
+                                    {
+                                        selection = 0;
+                                    }
                                 }
                                 break;
                             case 4:

@@ -68,9 +68,9 @@ namespace AccountManager
             new transition(State.KasirLogin, State.Login, Trigger.Cancel),
 
             // Bagian MainScreen
-            new transition(State.PembeliScreen, State.Login, Trigger.Cancel),
-            new transition(State.TenantScreen, State.Login, Trigger.Cancel),
-            new transition(State.KasirScreen, State.Login, Trigger.Cancel)
+            new transition(State.PembeliScreen, State.Start, Trigger.Cancel),
+            new transition(State.TenantScreen, State.Start, Trigger.Cancel),
+            new transition(State.KasirScreen, State.Start, Trigger.Cancel)
         };
 
         public State currentState;
@@ -232,7 +232,7 @@ namespace AccountManager
 
             int menuMain = 0;
 
-            while (currentState != State.Login)
+            while (currentState != State.Start)
             {
                 switch (menuMain)
                 {
@@ -250,7 +250,7 @@ namespace AccountManager
                         }
                         break;
                     case 1:
-                        Console.WriteLine("Logout. Kembali ke halaman Login");
+                        Console.WriteLine("Logout. Kembali ke halaman Registrasi/Login");
                         activeTrigger(Trigger.Cancel);
                         break;
                     default:
