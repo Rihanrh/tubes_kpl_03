@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AccountManager
 {
-    internal class AccountMachine
+    public class AccountMachine
     {
         public enum State { Start, Login, Registration, 
             PembeliRegistration, TenantRegistration, KasirRegistration, 
