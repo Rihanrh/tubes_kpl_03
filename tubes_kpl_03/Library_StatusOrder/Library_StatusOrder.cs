@@ -1,12 +1,12 @@
 ﻿using System.Diagnostics.Contracts;
 
-namespace MengubahStatusPesanan
+namespace Library_StatusOrder
 {
-    public class MengubahStatusPesanan_Test
+    public class MengubahStatusPesanan
     {
-        private List<order> orders;
+        public List<order> orders;
 
-        public MengubahStatusPesanan_Test()
+        public  MengubahStatusPesanan()
         {
             orders = new List<order>();
         }
@@ -19,11 +19,11 @@ namespace MengubahStatusPesanan
         public void MengonfirmasiPembayaranKasir(int kodeAntrian)
         {
             // Cari order dengan kode antrian yang diberikan
-            var orderCashMethod = orders.FirstOrDefault(o => o.status.Any(s => s.kodeAntrian == kodeAntrian) && o.paymentMethod == "cash");
+            var orderCashMethod = orders.FirstOrDefault(o => o.status.Any(s => s.kodeAntrian == kodeAntrian) && o.paymentMethod == "Tunai");
 
             if (orderCashMethod == null)
             {
-                Console.WriteLine("Tidak ada pesanan dengan kode antrian tersebut atau pesanan dibayar dengan bukan cash.");
+                Console.WriteLine("Tidak ada pesanan dengan kode antrian tersebut atau pesanan dibayar dengan Qris.");
                 return;
             }
 
@@ -35,7 +35,12 @@ namespace MengubahStatusPesanan
                     status.statusOrder = "Pesanan sedang disiapkan";
                     Console.WriteLine("Status pesanan dengan kode antrian {0} berhasil diubah menjadi {1}.", kodeAntrian, status.statusOrder);
                     return;
+                }else
+                {
+                    Console.WriteLine("Pembayaran Sudah Terkonfirmasi");
+                    return;
                 }
+                
             }
 
         }
@@ -45,6 +50,7 @@ namespace MengubahStatusPesanan
             // Cari order dengan kode antrian yang diberikan
             var orderCheck = orders.FirstOrDefault(o => o.status.Any(s => s.kodeAntrian == kodeAntrian));
 
+            
             if (orderCheck == null)
             {
                 Console.WriteLine("Tidak ada pesanan dengan kode antrian tersebut.");
@@ -54,11 +60,20 @@ namespace MengubahStatusPesanan
             // Ubah status pesanan
             foreach (var status in orderCheck.status)
             {
-                if (status.statusOrder == "Menunggu konfirmasi pembayaran")
+                if (status.statusOrder == "Menunggu konfirmasi pembayaran" )
                 {
-                    status.statusOrder = "Pesanan sedang disiapkan";
-                    Console.WriteLine("Status pesanan dengan kode antrian {0} berhasil diubah menjadi {1}.", kodeAntrian, status.statusOrder);
+                    if(orderCheck.paymentMethod == "Qris")
+                    {
+                        status.statusOrder = "Pesanan sedang disiapkan";
+                        Console.WriteLine("Status pesanan dengan kode antrian {0} berhasil diubah menjadi {1}.", kodeAntrian, status.statusOrder);
+                        
+                    }else if(orderCheck.paymentMethod == "Tunai")
+                    {
+                        Console.WriteLine("Metode Pembayaran Bukan Menggunakan Qris");
+                    }
                     return;
+
+                    
                 }
                 else if (status.statusOrder == "Pesanan sedang disiapkan")
                 {
@@ -66,7 +81,9 @@ namespace MengubahStatusPesanan
                     Console.WriteLine("Status pesanan dengan kode antrian {0} berhasil diubah menjadi {1}.", kodeAntrian, status.statusOrder);
                     return;
                 }
+
             }
+
 
         }
         public void DisplayOrders()
@@ -136,24 +153,31 @@ namespace MengubahStatusPesanan
 
         public void DisplayOrdersTenant(string tenantID)
         {
+            Console.WriteLine();
+            Console.WriteLine("-------------------------" + "Daftar Pesanan Tenant " + tenantID + "-------------------------");
+            
             for (int i = 0; i < orders.Count; i++)
             {
+                
                 if (orders[i].tenant == tenantID)
                 {
-                    Console.WriteLine("Daftar Pesanan:");
-                    Console.WriteLine("Tenant: " + orders[i].tenant);
+                    
+                    
+                    Console.WriteLine();
                     Console.WriteLine("Status: ");
                     for (int j = 0; j < orders[i].status.Count; j++)
                     {
                         Console.WriteLine("- Kode Antrian: " + orders[i].status[j].kodeAntrian);
                         Console.WriteLine("  Status Order: " + orders[i].status[j].statusOrder);
                     }
+                    Console.WriteLine();
                     Console.WriteLine("Items:");
                     for (int k = 0; k < orders[i].items.Count; k++)
                     {
                         Console.WriteLine("- Nama Menu: " + orders[i].items[k].namaMenu);
                         Console.WriteLine("  Jumlah: " + orders[i].items[k].qty);
                     }
+                    Console.WriteLine();
                     Console.WriteLine("Payment Details:");
                     for (int l = 0; l < orders[i].paymentDetails.Count; l++)
                     {
@@ -161,10 +185,13 @@ namespace MengubahStatusPesanan
                         Console.WriteLine("  Harga: " + orders[i].paymentDetails[l].harga);
                         Console.WriteLine("  Total: " + orders[i].paymentDetails[l].total);
                     }
+                    Console.WriteLine();
                     Console.WriteLine("Payment Method: " + orders[i].paymentMethod);
                     Console.WriteLine();
                 }
+                
             }
+            Console.WriteLine("-----------------------------------------------------------------------------");
 
         }
 
